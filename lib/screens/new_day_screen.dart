@@ -41,10 +41,6 @@ class _NewDayScreenState extends State<NewDayScreen> {
           key: _newDayFormKey,
           child: Column(
             children: [
-              Text(
-                'App new day Body'
-              ),
-
               TextFormField(
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -65,14 +61,127 @@ class _NewDayScreenState extends State<NewDayScreen> {
               SizedBox(
                 height: 8.0,
               ),
+              TextFormField(
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: kTextFormFieldTextColor,
+                ),
+                decoration: kTextFieldInputDecoration.copyWith(hintText: 'location id'),
+                validator: (value) {
+                  if(value == null || value.isEmpty){
+                    return 'please eneter location id';
+                  }else{
+                    return null;
+                  }
+                },
+                onChanged: (value){
+                  locationId = value;
+                },
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              TextFormField(
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: kTextFormFieldTextColor,
+                ),
+                decoration: kTextFieldInputDecoration.copyWith(hintText: 'start time'),
+                validator: (value) {
+                  if(value == null || value.isEmpty){
+                    return 'please eneter start time';
+                  }else{
+                    return null;
+                  }
+                },
+                onChanged: (value){
+                  startTime = value;
+                },
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              TextFormField(
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: kTextFormFieldTextColor,
+                ),
+                decoration: kTextFieldInputDecoration.copyWith(hintText: 'start date'),
+                validator: (value) {
+                  if(value == null || value.isEmpty){
+                    return 'please enter start date';
+                  }else{
+                    return null;
+                  }
+                },
+                onChanged: (value){
+                  startDate = value;
+                },
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              TextFormField(
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: kTextFormFieldTextColor,
+                ),
+                decoration: kTextFieldInputDecoration.copyWith(hintText: 'end time'),
+                validator: (value) {
+                  if(value == null || value.isEmpty){
+                    return 'please eneter end time';
+                  }else{
+                    return null;
+                  }
+                },
+                onChanged: (value){
+                  endTime = value;
+                },
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              TextFormField(
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: kTextFormFieldTextColor,
+                ),
+                decoration: kTextFieldInputDecoration.copyWith(hintText: 'end date'),
+                validator: (value) {
+                  if(value == null || value.isEmpty){
+                    return 'please enter end date';
+                  }else{
+                    return null;
+                  }
+                },
+                onChanged: (value){
+                  endDate = value;
+                },
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: () async{
+          if(_newDayFormKey.currentState!.validate()){
+            setState(() {
+              showSpinner = true;
+            });
+            try{
+              //TODO: store the day
+            }catch(e){
+              print(e.hashCode);
+            }
+          }
+
+        },
         child: Icon(
-          Icons.start,
+          Icons.save,
         ),
       ),
     );
